@@ -1,5 +1,5 @@
 ####Pull the docker image of apache from docker hub #####
 docker run -itd -p 5008:80 --name web-host ajiths84/media-wiki-apache:1.1 /bin/bash
-docker run -itd -p 5001:3306 --name db-host --link=web-host:ajiths84/media-wiki-apache:1.1 /bin/bash
 docker run -it  ajiths84/ajith-db:1.1
+docker run -itd -p 5001:3306 --name ajith-db --link=web-host:ajiths84/media-wiki-apache:1.1 /bin/bash
 browser #ipaddress:5008
