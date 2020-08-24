@@ -6,7 +6,7 @@ docker docker run -itd -p 5008:80 --name web-host ubuntu:16.04 /bin/bash
 docker commit "image id" ajiths84/media-wiki-apache:1.1 ----> to commit the changes
 docker push  ---> to push the image to docker registry
 docker run -itd -p 5008:80 --name web-host1  ajiths84/ajith-apache2:latest /bin/bash---> 
-docker run -it --namedb-host ajiths84/mediawiki-mysql:1.3 /bin/bash
+docker run -it --name db-host ajiths84/mediawiki-mysql:1.3 /bin/bash
 https://www.mediawiki.org/wiki/Manual:Running_MediaWiki_on_Debian_or_Ubuntu
 by using these containers configured mysql
 
@@ -16,5 +16,10 @@ docker exec -it web-host /bin/bash -- to login
 service apache2 status ---. to check the service is running fine
 docker run -itd -p 5001:3306 --name db-host --link=web-host:alias-webhost ajiths84/mediawiki-mysql:1.3 /bin/bash
 docker exec -it db-host /bin/bash
+Add these below lines
+vi /etc/mysql/mysql.cnf
+[mysqld]
+skip-grant-tables
+
 service mysql start
 browser #ipaddress:5008 ---> to make configuration of wiki
