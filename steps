@@ -1,4 +1,20 @@
-####Pull the docker image of apache from docker hub #####
+#########docker images are being create by using these steps###
+https://www.mediawiki.org/wiki/Manual:Running_MediaWiki_on_Debian_or_Ubuntu
+By using these steps configured the apache
+https://www.mediawiki.org/wiki/Manual:Running_MediaWiki_on_Debian_or_Ubuntu 
+docker docker run -itd -p 5008:80 --name web-host ubuntu:16.04 /bin/bash
+docker commit "image id" ajiths84/media-wiki-apache:1.1 ----> to commit the changes
+docker push  ---> to push the image to docker registry
+docker run -itd -p 5008:80 --name web-host ajiths84/media-wiki-apache:1.1 /bin/bash   ---> 
+docker run -it --namedb-host ajiths84/mediawiki-mysql:1.2 /bin/bash
+https://www.mediawiki.org/wiki/Manual:Running_MediaWiki_on_Debian_or_Ubuntu
+by using these containers configured mysql
+
+In order to use these containser
 docker run -itd -p 5008:80 --name web-host ajiths84/media-wiki-apache:1.1 /bin/bash
-docker run -itd -p 5001:3306 --name db-host  ajiths84/ajith-db:1.1 --link=web-host:ajiths84/media-wiki-apache:1.1 /bin/bash
-browser #ipaddress:5008
+docker exec -it web-host /bin/bash -- to login
+service apache2 status ---. to check the service is running fine
+docker run -itd -p 5001:3306 --name db-host --link=web-host:alias-webhost ajiths84/mediawiki-mysql:1.2 /bin/bash
+docker exec -it db-host /bin/bash
+service mysql start
+browser #ipaddress:5008 ---> to make configuration of wiki
